@@ -1,0 +1,13 @@
+body {
+    background: #676E81;
+    color: #BEC5AD;
+}
+
+.congratulations {
+    height: 250px;
+}
+
+.fade-text-trigger {
+    transition: color .5s;
+    color: #FF0000;
+}

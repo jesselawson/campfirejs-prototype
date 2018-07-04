@@ -1,0 +1,120 @@
+
+<!doctype html>
+
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Aesthetics of Blue</title>
+
+    <meta name="description" content="typebase.css: The starting point for good typography on the web">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- base -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
+    <!-- chapter -->
+    <link rel="stylesheet" type="text/css" href="assets/css/chapter1.css" />
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300|Cantata+One' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <article>
+      <header>
+        <div class="contratulations">
+          <center>
+            <img src="assets/img/if-there-are-infinite-universes-then-there-is-one-where-there-are-none.gif" class="congratulations">
+          </center>
+        </div>
+        <h1>Congratulations!</h1>
+      </header>
+      <p>
+        This is your <span id="iterations"></span> attempt, but <span id="first">there's no</span>thing to worry: on average, people with your <span id="second">condition</span> tend to take that many attempts. 
+      </p>
+      <p>
+        As was stated last time, <span id="third">confusion is</span> a natural byproduct of <span id="fourth">the treatment</span>. <strong>It's okay to feel confused.</strong>
+      </p>
+      <p>
+          Please <strong>continue the treatment</strong> so we can continue to help remember what happened.
+      </p>
+
+      <p class="btnBlock">
+        <a class="btn" onclick="handleClick()">
+          Continue Treatment
+        </a>
+      </p>
+
+      <p class="authorInfo">
+        THE AESTHETICS OF BLUE. By <strong><a href="https://lawsonry.com">JESSE LAWSON</a></strong>.
+      </p>
+
+     
+    </article>
+  </body>
+
+  <!-- Your Brain -->
+  <script>
+    
+    function fadeIn(element) {
+    var op = 0.1;  // initial opacity
+    element.style.display = 'block';
+    var timer = setInterval(function () {
+        if (op >= 1){
+            clearInterval(timer);
+        }
+        element.style.opacity = op;
+        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
+        op += op * 0.1;
+    }, 10);
+}
+
+var clicks = 0;
+
+function handleClick() {
+    clicks++;
+
+    if(clicks == 1) {
+        var e = document.getElementById('first');
+        e.className += " fade-text-trigger";
+    }
+
+    if(clicks == 2) {
+        var e = document.getElementById('second');
+        e.className += " fade-text-trigger";
+    }
+
+    if(clicks == 3) {
+        var e = document.getElementById('third');
+        e.className += " fade-text-trigger";
+    }
+
+    if(clicks == 4) {
+        var e = document.getElementById('fourth');
+        e.className += " fade-text-trigger";
+    }
+
+
+}
+
+var loggedIterations = ["6th", "7th", "35th", "9th","4th","3rd"]
+var iterations = loggedIterations[Math.floor(Math.random()*loggedIterations.length)]
+
+
+var callback = function(){
+    document.getElementById('iterations').innerHTML = iterations;
+};
+
+if (
+    document.readyState === "complete" ||
+    (document.readyState !== "loading" && !document.documentElement.doScroll)
+) {
+  callback();
+} else {
+  document.addEventListener("DOMContentLoaded", callback);
+}
+
+  </script>
+
+</html>
