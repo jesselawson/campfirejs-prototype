@@ -18,6 +18,20 @@
     <!-- chapter -->
     <link rel="stylesheet" type="text/css" href="assets/css/chapter1.css" />
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300|Cantata+One' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <!-- storylang tools -->
+    <script src="assets/js/storylang.js"></script>
+
+    <script lang="text/javascript">
+    
+    
+
+
+  </script>
+
+
   </head>
 
   <body>
@@ -28,16 +42,16 @@
             <img src="assets/img/if-there-are-infinite-universes-then-there-is-one-where-there-are-none.gif" class="congratulations">
           </center>
         </div>
-        <h1>Congratulations!</h1>
+        <h1>Welcome Back!</h1>
       </header>
       <p>
-        This is your <span id="iterations"></span> attempt, but <span id="first">there's no</span>thing to worry: on average, people with your <span id="second">condition</span> tend to take that many attempts. 
+        We are now on your <span id="iterations"></span> attempt. <strong>You are making progress; don't give up.</strong> Remember that <span id="first">there's no</span>thing to worry about, since, on average, people with your <span id="second">condition</span> tend to take longer than average to recover. 
       </p>
       <p>
-        As was stated last time, <span id="third">confusion is</span> a natural byproduct of <span id="fourth">the treatment</span>. <strong>It's okay to feel confused.</strong>
+        As was stated last time, <span id="third">confusion is</span> a natural byproduct of <span id="fourth">what</span> this therapy entails. <strong>It's okay to feel confused</strong> because we are here for you. You are safe.
       </p>
       <p>
-          Please <strong>continue the treatment</strong> so we can continue to help remember what happened.
+          Our Mind Team has placed you onThey have been working with you for a very long time. Please <strong>continue the treatment</strong> so we can continue to help you remember what happened.
       </p>
 
       <p class="btnBlock">
@@ -49,35 +63,38 @@
       <p class="authorInfo">
         THE AESTHETICS OF BLUE. By <strong><a href="https://lawsonry.com">JESSE LAWSON</a></strong>.
       </p>
-
      
     </article>
+
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
   </body>
+
 
   <!-- Your Brain -->
   <script>
     
-    function fadeIn(element) {
-    var op = 0.1;  // initial opacity
-    element.style.display = 'block';
-    var timer = setInterval(function () {
-        if (op >= 1){
-            clearInterval(timer);
-        }
-        element.style.opacity = op;
-        element.style.filter = 'alpha(opacity=' + op * 100 + ")";
-        op += op * 0.1;
-    }, 10);
-}
+    
 
 var clicks = 0;
 
 function handleClick() {
     clicks++;
 
+    // On each click, "Server Error: please try again." popup
+
     if(clicks == 1) {
         var e = document.getElementById('first');
         e.className += " fade-text-trigger";
+        Toastify({
+          text: "Something went wrong. Please try again.",
+          duration: 5000,
+          close: true,
+          gravity: "top", // `top` or `bottom`
+          positionLeft: false, // `true` or `false`
+          classes: "server-message",
+          backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+    }).showToast();
     }
 
     if(clicks == 2) {
@@ -94,26 +111,21 @@ function handleClick() {
         var e = document.getElementById('fourth');
         e.className += " fade-text-trigger";
     }
-
-
 }
 
-var loggedIterations = ["6th", "7th", "35th", "9th","4th","3rd"]
-var iterations = loggedIterations[Math.floor(Math.random()*loggedIterations.length)]
 
 
-var callback = function(){
-    document.getElementById('iterations').innerHTML = iterations;
-};
+var story = new Storylang()
 
-if (
-    document.readyState === "complete" ||
-    (document.readyState !== "loading" && !document.documentElement.doScroll)
-) {
-  callback();
-} else {
-  document.addEventListener("DOMContentLoaded", callback);
-}
+story.OnLoad( function() {
+  var loggedIterations = ["6th", "7th", "35th", "9th","4th","3rd"]
+  var iterations = loggedIterations[Math.floor(Math.random()*loggedIterations.length)]
+  document.getElementById('iterations').innerHTML = iterations;
+})
+
+
+// Always call this at the end
+story.Begin()
 
   </script>
 

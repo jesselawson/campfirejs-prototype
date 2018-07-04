@@ -9,5 +9,9 @@ body {
 
 .fade-text-trigger {
     transition: color .5s;
-    color: #FF0000;
+    color: #151515;
+}
+
+.server-message {
+    background: #A63D40;
 }

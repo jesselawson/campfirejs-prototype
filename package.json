@@ -1,0 +1,13 @@
+{
+    "name": "Aesthetics",
+    "version": "0.1.0",
+    "description": "A first-person interactive experience.",
+    "repository": "git@gitlab.com:lawsonry/aesthetics.git",
+    "author": "Jesse Lawson <jesse@lawsonry.com>",
+    "license": "None",
+    "private": true,
+    "dependencies": {
+      "typed.js": "^2.0.8"
+    }
+  }
+  
