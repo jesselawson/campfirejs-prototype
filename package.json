@@ -6,10 +6,17 @@
     "author": "Jesse Lawson <jesse@lawsonry.com>",
     "license": "GPL",
     "scripts": {
-        "build": "./node_modules/.bin/minify src/campfire.js --out-file dist/campfire.min.js --mangle.keepFnName"
+        "pre-build": "git describe --tags > VERSION",
+        "the-build": "./node_modules/.bin/minify src/campfire.js --out-file dist/campfire.min.js",
+        "post-build": "node postbuild.js && rm -rf VERSION",
+        "build": "npm run-script pre-build && npm run-script the-build && npm run-script post-build"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
-        "babel-minify": "^0.4.3"
+        "babel-minify": "^0.4.3",
+        "babel-plugin-add-header-comment": "^1.0.3",
+        "babel-plugin-minify-mangle-names": "^0.4.3",
+        "babel-plugin-minify-simplify": "^0.4.3",
+        "babel-preset-minify": "^0.4.3"
     }
 }

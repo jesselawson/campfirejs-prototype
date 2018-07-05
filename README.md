@@ -1,12 +1,12 @@
 # Campfire
 
-A lightweight, pure JavaScript tool for writing interactive, mutable stories.
+A lightweight, pure JavaScript tool for writing interactive, mutable experiences.
 
-An alpha demo is being developed in the `examples/` folder.
+An alpha demo is being developed in the `examples/` folder. It is **not completed** and is a **work in progress**.
 
 # Getting Started
 
-Include `campfire.js` or `campfire.min.js` 
+Include `campfire.js` or `campfire.min.js` in your project.
 
 **CDN**
 
@@ -15,6 +15,8 @@ The most recent build of `campfire.min.js` can loaded with the following link:
 ```html
 <script src="https://gitcdn.link/repo/lawsonry/campfirejs/master/dist/campfire.min.js"></script>
 ```
+
+Write a cool interactive experience. 
 
 # Usage
 
