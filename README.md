@@ -12,7 +12,9 @@ Include `campfire.js` or `campfire.min.js`
 
 The most recent build of `campfire.min.js` can loaded with the following link:
 
-`<script src="https://gitcdn.link/repo/lawsonry/campfirejs/master/dist/campfire.min.js">`
+```html
+<script src="https://gitcdn.link/repo/lawsonry/campfirejs/master/dist/campfire.min.js"></script>
+```
 
 # Usage
 
