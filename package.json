@@ -1,13 +1,15 @@
 {
-    "name": "Aesthetics",
+    "name": "CampfireJS",
     "version": "0.1.0",
-    "description": "A first-person interactive experience.",
-    "repository": "git@gitlab.com:lawsonry/aesthetics.git",
+    "description": "A pure JavaScript storytelling toolkit.",
+    "repository": "https://www.github.com/lawsonry/campfirejs",
     "author": "Jesse Lawson <jesse@lawsonry.com>",
-    "license": "None",
-    "private": true,
-    "dependencies": {
-      "typed.js": "^2.0.8"
+    "license": "GPL",
+    "scripts": {
+      "build": "./node_modules/.bin/babel build"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-minify": "^0.4.3"
     }
-  }
-  
+}

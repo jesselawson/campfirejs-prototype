@@ -163,14 +163,3 @@ function Storylang() {
         
     }
 }
-
-
-
-/*
-
-Examples
-
-var Story = Storylang()
-Story.RegisterHook(function() { clicks == 4 ? true : false }, '#first-fade', 'fade-in-text');
-
-*/
