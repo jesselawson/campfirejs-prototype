@@ -1,20 +1,28 @@
-# Storylang
+# Campfire
 
 A lightweight, pure JavaScript tool for writing interactive, mutable stories.
 
 An alpha demo is being developed in the `examples/` folder.
+
+# Getting Started
+
+Include `campfire.js` or `campfire.min.js` 
+
+**CDN**
+
+
 
 # Usage
 
 Create a story object:
 
 ```js
-var story = new Storylang()
+var story = new Campfire()
 ```
 
 ## Triggers
 
-You can create triggers based on a condition. There are two types of triggers: a **function** trigger, and an **event** trigger. In Storylang, **events** are little pieces of delivered functionality. 
+You can create triggers based on a condition. There are two types of triggers: a **function** trigger, and an **event** trigger. In Campfire, **events** are little pieces of delivered functionality. 
 
 Function triggers will call a function when a given trigger occurs. 
 
@@ -25,7 +33,7 @@ Event triggers can call an array of events, and may call a function when a given
 A basic trigger has a condition--`trigger`--and something that happens when the trigger condition is true--`then`. Think of it like, when `trigger`, `then` (do something):
 
 ```js
-var story = new Storylang()
+var story = new Campfire()
 
 story.RegisterTrigger({
     trigger: ()=> { 
@@ -45,7 +53,7 @@ Basic triggers like this are great ways to ensure that you have a function that 
 var playerIsDead = false
 var gameOver = false
 
-var story = new Storylang()
+var story = new Campfire()
 
 story.RegisterTrigger({
     trigger: ()=> { return (playerIsDead) },
@@ -61,7 +69,7 @@ The above will create a trigger that will fire **once** as soon as `playerIsDead
 Here's another example: a trigger that uses your own custom functions:
 
 ```js
-var story = new Storylang()
+var story = new Campfire()
 
 story.RegisterTrigger({
     trigger: PlayerIsDead(), then: HandleGameOver()
@@ -72,7 +80,7 @@ The above example would call `HandleGameOver()` exactly once when `PlayerIsDead(
 
 ## Event Triggers
 
-Storylang delivers a special type of trigger called an "event trigger," which allows you to use any one of the delivered event methods inside your trigger. 
+Campfire delivers a special type of trigger called an "event trigger," which allows you to use any one of the delivered event methods inside your trigger. 
 
 Two of the most basic event methods are `addClass` and `removeClass`, which will add and remove a css class to a target element respectively:
 
@@ -108,19 +116,19 @@ The `events` property can have as many events as you want that will be fired exa
 Switches are simple string properties that either exist or not. 
 
 ```js
-var story = new Storylang()
+var story = new Campfire()
 
-story.setSwitch('loves_storylang')
+story.setSwitch('loves_campfire')
 
-if(story.getSwitch('loves_storylang')) {
-    console.log("This will be written to the console since 'loves_storylang' was set to true")
+if(story.getSwitch('loves_campfire')) {
+    console.log("This will be written to the console since 'loves_campfire' was set to true")
 }
 ```
 
 The function `setSwitch` defaults to assigning the value to true, but you can always manually assign it to false:
 
 ```js 
-var story = new Storylang()
+var story = new Campfire()
 
 story.setSwitch('has_physics_book')
 
@@ -132,7 +140,7 @@ if(playerDroppedBook()) {
 The functions `setSwitch` and `getSwitch` can also be used in two other ways: `remember` and `recall`, respectively:
 
 ```js
-var story = Storylang()
+var story = Campfire()
 
 story.remember('chose_left_door')
 
@@ -147,4 +155,13 @@ if(story.recall('chose_left_door')) {
 
 # Contributing
 
-Feel free to tackle some of the issues and/or submity our own new features as a merge request. 
+Feel free to tackle some of the issues and/or submit your own new features as a merge request. 
+
+## Getting Started
+
+1. Clone the repo and enter the dir: `$> git clone https://www.github.com/lawsonry/campfirejs && cd campfirejs`
+2. Install dev dependencies: `$/campfirejs> npm install`
+3. Do amazing things.
+4. Build `dist/campfire.min.js`: `$/campfirejs> npm run-script build`
+
+Feel free to submit a merge request with your changes and improvements. 

@@ -6,10 +6,11 @@
     "author": "Jesse Lawson <jesse@lawsonry.com>",
     "license": "GPL",
     "scripts": {
-      "build": "./node_modules/.bin/babel build"
+        "build": "./node_modules/.bin/minify src/campfire.js --out-file dist/campfire.min.js --mangle.keepFnName",
+        "build-examples": "./node_modules/.bin/minify src/campfire.js --out-file examples/dark-recovery/assets/js/campfire.min.js --mangle.keepFnName"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
-        "babel-preset-minify": "^0.4.3"
+        "babel-minify": "^0.4.3"
     }
 }

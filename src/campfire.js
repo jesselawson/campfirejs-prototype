@@ -1,6 +1,6 @@
-/* Storylang.js v0.1.0
+/* Campfire.js
  * Written by Jesse Lawson <jesse@lawsonry.com>
- * \ Website: https://lawsonry.com/storylang
+ * \ Website: https://lawsonry.com/campfire
  * \ GitHub: lawsonry
  * \ Twitter: @lawsonry
  * 
@@ -9,10 +9,10 @@
 const DEBUG = true
 
 function Log(message) {
-    if(DEBUG) console.log("[ Storylang.js] "+message)
+    if(DEBUG) console.log("[ Campfire.js ] "+message)
 }
 
-function Storylang() {
+function Campfire() {
     
     // Triggers
     // Triggers are stored like this:
