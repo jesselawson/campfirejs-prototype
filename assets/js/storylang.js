@@ -1,25 +1,26 @@
 /* Storylang.js v0.1.0
  * Written by Jesse Lawson <jesse@lawsonry.com>
- * \ Website: https://lawsonry.com
+ * \ Website: https://lawsonry.com/storylang
  * \ GitHub: lawsonry
  * \ Twitter: @lawsonry
  * 
 */
 
-function Log(message) {
-    console.log("[ Storylang.js] "+message)
-}
+const DEBUG = true
 
-// An object holding the implemented features of Storylang
-const implemented = {
-    classHooks: {
-        methods: ['add', 'remove']
-    }
+function Log(message) {
+    if(DEBUG) console.log("[ Storylang.js] "+message)
 }
 
 function Storylang() {
     
-    this.classHooks = []
+    // Triggers
+    // Triggers are stored like this:
+    // { trigger: function(), events: [{targetId:'asdf',addClass:'qwer'}], optionalCallback() }
+    this.triggers = []
+
+    function getTriggers() { return this.triggers }
+
     this.onLoadCallback = function() {}
 
     _OnLoad = () => {
@@ -36,51 +37,109 @@ function Storylang() {
     }
     
     _OnUpdate = () => {
-        // Loop through faders and update them
-        for( let f of this.classHooks ) {
+        
+        // Loop through triggers and execute them if their condition has been met
+        for( let f of this.triggers ) {
+           
             // If the condition is satisifed...
-            if(f.condition) {
-                // Ensure our element exists
-                let e = document.getElementById( f.element )
+            if( f.trigger() && !f.fired ) {
+                Log("Trigger fired")
+                // Loop through the events and process them
+                for( let e of f.events ){
+                    // Is this an element trigger?
+                    if( e.targetId != undefined ) {
+                        let targetElement = document.getElementById(e.targetId)
+                        if(targetElement == null) { 
+                            Log('Could not activate trigger for element "'+e.targetId+'" because that element was not found.')
+                            continue
+                        }
+                        // Process element trigger based on method
+                        if( e.addClass != undefined ){
+                            targetElement.classList.add(e.addClass)
+                            Log("Fired trigger")
+                            continue
+                        }
+                        if( e.removeClass != undefined) {
+                            targetElement.classList.remove( e.removeClass )
+                            continue
+                        }
+                    }
 
-                // Do work based on the method
-                if(f.method == 'add') {
-                    e.addClass( f.className )
-                } else if(f.method == 'remove') {
-                    e.classList.remove( f.classList )
+                    // Adding additional types:
+                    // if( e.somethingElse != undefined ) { ... }
+
                 }
+
+                // Mark this trigger as having been fired
+                f.fired = true
             }
         }
     }
 
-    // RegisterClassHook
+    // RegisterElementTrigger
     // param example
-    // var params = { condition: function() { return true }, method: 'add', className: 'fade-in-text' }
-    
-    _RegisterClassHook = ( params ) => {
+    /* var params = { 
+        condition: () => {true},
+        [{
+            // triggered events
+        }],
+        optionalCallback()
+    */
+    //{ condition: function(), events: [{targetId:'asdf',addClass:'qwer'}], optionalCallback() }
+    _RegisterTrigger = ( params ) => {
         
-        // Preregistration checks to ensure 1) the element exists, and 2) the method is appropriate
-        if( document.getElementById( params.element == null)) {
-            Log('Could not register class hook for element "'+params.element+'" because that element was not found.')
+        // First we loop through the events to ensure 1) all elements exist, and 2) all events have been implemented.
+        if( params.events == undefined ) {
+            Log("Could not register trigger because no 'events' property was found.")
             return false
-        } else if ( implemented.classHooks.method.includes( params.method ) == false ) {
-            Log('Could not register class hook for element "'+params.element+'" because "'+params.method+'" +is not an implemented method.')
-        
         }
+
+        for(var e of params.events ) {
+            // Check if this is an element trigger, which requires a target id
+            if( e.targetId == undefined ) {
+                Log('Could not register trigger because no target element ID was specified.')
+                return false
+            }
+
+            if( document.getElementById(e.targetId) == null ) {
+                Log('Could not register trigger for element "'+e.targetId+'" because that element was not found.')
+                return false
+            }
+                
+            // TODO: If there are MORE element triggers added, they need to be listed here
+            if( 
+                    e.addClass != undefined 
+                || e.removeClass != undefined
+                || e.appendChild != undefined
+            ){
+                // We are safe to process this event trigger
+                var newParams = params 
+                newParams["fired"] = false // Add a "fired" property to ensure we aren't double firing something
+                this.triggers.push(newParams)
+                Log("Registered trigger: "+newParams)
+                console.log(newParams)
+            } else {
+                Log('Could not register trigger for element "'+e.targetId+'" because the method passed has not been implemented.')
+            }
+        } 
     }
+
     return {
         
         OnLoad: function(callback) {
             this.onLoadCallback = callback
         },
         OnUpdate: function() {
-            return _OnUpdate
+            return _OnUpdate()
         },
-        RegisterClassHook: function( params ) {
-            _RegisterClassHook( params )
+        RegisterTrigger: function( params ) {
+            return _RegisterTrigger( params )
         },
         Begin: function() {
-            this.onLoadCallback()
+            return this.onLoadCallback()
+        },
+        __getTriggers: function() {
+            return this.triggers
         }
         
     }
@@ -93,6 +152,6 @@ function Storylang() {
 Examples
 
 var Story = Storylang()
-Story.RegisterClassHook(function() { clicks == 4 ? true : false }, '#first-fade', 'fade-in-text');
+Story.RegisterHook(function() { clicks == 4 ? true : false }, '#first-fade', 'fade-in-text');
 
 */
