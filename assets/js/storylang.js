@@ -68,6 +68,11 @@ function Storylang() {
                     // Adding additional types:
                     // if( e.somethingElse != undefined ) { ... }
 
+                } // End looping through events
+
+                // Lastly, let's call the "then" function that fires after this trigger's events have been processed
+                if(f.then != null || f.then != undefined ) {
+                    f.then()
                 }
 
                 // Mark this trigger as having been fired
