@@ -10,7 +10,9 @@ Include `campfire.js` or `campfire.min.js`
 
 **CDN**
 
+The most recent build of `campfire.min.js` can loaded with the following link:
 
+`<script src="https://gitcdn.link/repo/lawsonry/campfirejs/master/dist/campfire.min.js">`
 
 # Usage
 
