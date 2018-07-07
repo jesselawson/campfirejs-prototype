@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Aesthetics of Blue</title>
+    <title>Dark Recovery</title>
 
     <meta name="description" content="typebase.css: The starting point for good typography on the web">
     <meta name="viewport" content="width=device-width">
@@ -22,46 +22,95 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <!-- campfire tools -->
+    <link rel="stylesheet" type="text/css" href="../../dist/campfire.css">
    <!--<script src="https://gitcdn.link/repo/lawsonry/campfirejs/master/dist/campfire.min.js"></script>-->
     <script src="../../dist/campfire.min.js"></script>
     <script src="assets/js/helpers.js"></script>
     
+    
   </head>
 
-  <body>
-    <article>
+  <body id="page-body" class="cf-body-light">
+    <article id="page-1" class="cf-revealed">
       <header>
         <div class="contratulations">
           <center>
             <img src="assets/img/if-there-are-infinite-universes-then-there-is-one-where-there-are-none.gif" class="congratulations">
           </center>
         </div>
-        <h1>Welcome Back!</h1>
+        <h1>Welcome back.</h1>
       </header>
+      <p class="btnBlock">
+          <a class="btn" onclick="handleClick()">
+            Thank You
+          </a>
+        </p>
+
+      <p class="authorInfo">
+        DARK RECOVERY<br>
+        By <strong><a href="https://lawsonry.com">JESSE LAWSON</a></strong>.
+      </p>
+
+
+    </article>
+
+
+    <article id="page-2" class="cf-hidden">
+        <header>
+            <div class="contratulations">
+              <center>
+                <img src="assets/img/if-there-are-infinite-universes-then-there-is-one-where-there-are-none.gif" class="small-logo">
+              </center>
+            </div>
+            <h1>neurodyne, inc.</h1>
+          </header>
       <p>
         We are now on your <span id="iterations"></span> attempt. <strong>You are making progress; don't give up.</strong> Remember that <span id="first">there's no</span>thing to worry about, since, on average, people with your <span id="second">condition</span> tend to take longer than average to recover. 
       </p>
-      <p>
+      <p><small>
         As was stated last time, <span id="third">confusion is</span> a natural byproduct of <span id="fourth">what</span> this therapy entails. <strong>It's okay to feel confused</strong> because we are here for you. You are safe.
+      </small>
       </p>
+      <p><small>
+          Our Mind Team has placed you on a <strong>priority screening</strong> regimen. <span id="fifth">They</span> have been working with you for a very long time, but it's okay if you don't remember them. We are happy to reintroduce them to you if you <span id="sixth">want</span>. Everyone here at Neurodyne is committed to your recovery.
+        </small>
+      </p>
+
       <p>
-          Our Mind Team has placed you onThey have been working with you for a very long time. Please <strong>continue the treatment</strong> so we can continue to help you remember what happened.
+          Please <strong>continue the treatment</strong> so we can continue to help you remember what happened.
       </p>
 
       <p class="btnBlock">
         <a class="btn" onclick="handleClick()">
-          Continue Treatment
+          <span id="scramble-button-text">Continue Treatment</span>
         </a>
       </p>
 
-      <p class="authorInfo">
-        THE AESTHETICS OF BLUE. By <strong><a href="https://lawsonry.com">JESSE LAWSON</a></strong>.
-      </p>
+      
      
     </article>
 
+    <div id="page-3" class="page-3 cf-hidden">
+
+      <div id="scramble-text-container" class="scramble-text-container cf-revealed">
+        <div class="scramble-text">(input override in progress...)</div>
+      </div>
+
+      <div id="page-3-button" class="cf-hidden">
+      <p class="btnBlock">
+          <a class="btn" onclick="handleClick()">
+            <span id="scramble-button-text">Continue Treatment</span>
+          </a>
+        </p>
+      </div>
+
+
+
+    </div>
+
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="assets/js/chapter1.js"></script>
   </body>
 
 
@@ -69,7 +118,7 @@
 <script>
 var story = new Campfire()    
 
-var clicks = 0;
+var clicks = -1;
 
 function handleClick() {
     clicks++;
@@ -85,6 +134,26 @@ story.OnLoad( function() {
 })
 
 // Register a bunch of triggers
+story.RegisterTrigger({ 
+  trigger: () => { return clicks == 0 }, 
+  events: [
+    {
+      targetId: 'page-1',
+      addClass: 'cf-hide'
+    },
+    {
+      targetId: 'page-2',
+      addClass: 'cf-reveal'
+    }
+  ],
+  then: function() {
+    ServerMessage("Logging you in via satellite...")
+    window.setTimeout(function() {
+      ServerMessage("Success!")
+    }, 750)
+  }
+})
+
 story.RegisterTrigger({ 
   trigger: () => { return clicks == 1 }, 
   then: function() {
@@ -103,6 +172,86 @@ story.RegisterTrigger({
     ServerMessage("We're sorry. Our server seems to be habing some trouble. Please try again.")
   }
 })
+
+story.RegisterTrigger({ 
+  trigger: () => { return clicks == 3 }, 
+  events: [
+    {
+      targetId: 'second',
+      addClass: 'fade-text-trigger'
+    },
+    {
+      targetId: 'third',
+      addClass: 'fade-text-trigger'
+    }
+  ],
+  then: function() {
+    ServerMessage("Unfortunately our system is experiencing technical issues.")
+  }
+})
+
+story.RegisterTrigger({ 
+  trigger: () => { return clicks == 4 }, 
+  events: [
+    {
+      targetId: 'fourth',
+      addClass: 'fade-text-trigger'
+    }
+  ],
+  then: function() {
+    ServerMessage("Error: unauthorized input detected. Please report this activity to an administrator.")
+  }
+})
+
+story.RegisterTrigger({ 
+  trigger: () => { return clicks == 5 }, 
+  events: [
+    {
+      targetId: 'fifth',
+      addClass: 'fade-text-trigger'
+    }
+  ],
+  then: function() {
+    ServerMessage("Warning: Your connection is not secure!")
+    HackerMessage("X:/>node lstnd.js > C:/system/security/auth.exe")
+  }
+})
+
+story.RegisterTrigger({ 
+  trigger: () => { return clicks == 6 }, 
+  events: [
+    {
+      targetId: 'sixth',
+      addClass: 'fade-text-trigger'
+    }
+  ],
+  then: function() {
+    ServerMessage("Error: un............ (output failed)")
+    HackerMessage("I'll explain later. Click the button one more time.")
+  }
+})
+
+story.RegisterTrigger({ 
+  trigger: () => { return clicks == 7 }, 
+  events: [
+    { targetId: 'page-2', addClass: 'page-2-fader' },
+    { targetId: 'page-2', removeClass: 'cf-reveal' },
+    { targetId: 'page-3', addClass: 'cf-reveal'},
+    { targetId: 'page-3', addClass: 'fade-in' }
+  ],
+  then: function() {
+    HackerMessage("Good.")
+    setTimeout(function() {
+      c1p3BeginText()
+    }, 3000)
+    setTimeout(function() {
+      document.getElementById('scramble-text-container').classList.add('cf-hide')
+      document.getElementById('page-3-button').classList.add('cf-reveal')
+    }, 15000)
+  }
+})
+
+
 
 
 // Always call this at the end

@@ -15,4 +15,59 @@ body {
 .server-message {
     background: #A63D40;
     padding: 80px;
+    color: white;
 }
+
+.hacker-message {
+    background: #151515;
+    color: #A63D40;
+}
+
+.small-logo {
+    width: 100px;
+    height: auto;
+    float: left;
+    padding: 0 16px 0 0;
+}
+
+.page-2-fader {
+    display: none;
+}
+
+.page-3 {
+    position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(21,21,21,0);
+    color: gray;
+}
+
+.page-3.fade-in {
+    transition: background-color 3s;
+    background-color: rgba(21,21,21,1);
+}
+
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
+
+.page-3 {
+  font-family: 'Roboto Mono', monospace;
+  background: #212121;
+  height: 100%;
+}
+.scramble-text-container {
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.scramble-text {
+  font-weight: 100;
+  font-size: 28px;
+  color: #fafafa;
+}
+.dud {
+  color: #757575;
+}
+
+

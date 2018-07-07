@@ -461,7 +461,7 @@
  }
  article {
    max-width: 700px;
-   margin: 6rem auto 0 auto;
+   margin: 0 auto 0 auto;
    padding: 0 40px;
  }
  header h1 {

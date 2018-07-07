@@ -119,6 +119,8 @@ The `events` property can have as many events as you want that will be fired exa
 
 ## Switches
 
+**Coming in v0.1.1**
+
 Switches are simple string properties that either exist or not. 
 
 ```js
