@@ -19,13 +19,13 @@ function Campfire() {
     // { trigger: function(), events: [{targetId:'asdf',addClass:'qwer'}], optionalCallback() }
     this.triggers = []
 
-    function getTriggers() { return this.triggers }
+    // Functions for debugging
+    __getTriggers = () => { return this.triggers }
 
     this.onLoadCallback = function() {}
 
-    _OnLoad = () => {
-        this.onLoadCallback()
-        // Safely determine whether we're loaded or not, and ensure we only call OnLoad() once
+    _onLoad = () => {
+        // Safely determine whether we're loaded or not, and ensure we only call onLoad() once
         if (
           document.readyState === "complete" || 
         (document.readyState !== "loading" && !document.documentElement.doScroll)
@@ -36,7 +36,7 @@ function Campfire() {
         }
     }
     
-    _OnUpdate = () => {
+    _onUpdate = () => {
         
         // Loop through triggers and execute them if their condition has been met
         for( let f of this.triggers ) {
@@ -93,7 +93,7 @@ function Campfire() {
         optionalCallback()
     */
     //{ condition: function(), events: [{targetId:'asdf',addClass:'qwer'}], optionalCallback() }
-    _RegisterTrigger = ( params ) => {
+    _registerTrigger = ( params ) => {
         
         // If this trigger has events, we'll loop through the events and validate them. Otherwise, just register
         // the trigger since it's just a "trigger-then" trigger.
@@ -141,22 +141,33 @@ function Campfire() {
             Log("Registered trigger: "+newParams)
             console.log(newParams)
         }
+    },
+
+    
+    _handleChoice = (choiceString) => {
+
     }
 
     return {
         
-        OnLoad: function(callback) {
+        onLoad: function(callback) {
             this.onLoadCallback = callback
+            return _onLoad()
         },
-        OnUpdate: function() {
-            return _OnUpdate()
+        onUpdate: function() {
+            return _onUpdate()
         },
-        RegisterTrigger: function( params ) {
-            return _RegisterTrigger( params )
+        registerTrigger: function( params ) {
+            return _registerTrigger( params )
         },
-        Begin: function() {
+        begin: function() {
             return this.onLoadCallback()
         },
+        handleChoice: function(choiceString) {
+            return _handleChoice(choiceString)
+        },
+
+        // DEBUG FUNCTIONS
         __getTriggers: function() {
             return this.triggers
         }

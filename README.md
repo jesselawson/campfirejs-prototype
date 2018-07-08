@@ -119,47 +119,100 @@ The `events` property can have as many events as you want that will be fired exa
 
 ## Switches
 
-**Coming in v0.1.1**
+Switches are simple string properties that either do or do not exist. They are useful for keeping track of **choices** that someone makes for the duration of their experience.
 
-Switches are simple string properties that either exist or not. 
+There are two functions involved: `remember()` and `recall()`, which set and retrieve the state of the switches, respectively.
+
+### Create a New Switch
+
+Create a new switch with a single, unique string identifier:
+
+```js
+story.remember('some memorable, unique string')
+```
+
+Set switches will always evaluate to `true` unless you explicitly declare this as one you want to evaluate to `false`:
+
+```js
+story.remember('player loves puppies', false)
+```
+
+### Query a switch
+
+```js
+var thisIsTrue = story.recall('some memorable, unique string')
+var thisIsFalse = story.recall('player loves puppies')
+var thisIsNull = story.recall('an unset switch')
+```
+
+### Switch Example 
+
+I want to remember if a player takes longer than five seconds to save someone from having to experience more pain:
 
 ```js
 var story = new Campfire()
 
-story.setSwitch('loves_campfire')
+// ...
 
-if(story.getSwitch('loves_campfire')) {
-    console.log("This will be written to the console since 'loves_campfire' was set to true")
+var playerSadismTimer = setTimeout(function() { story.remember('ch1_player_likes_seeing_pain') }, 5000);
+
+function handleStopPainButton() {
+    clearTimout(playerSadismTimer)
 }
 ```
 
-The function `setSwitch` defaults to assigning the value to true, but you can always manually assign it to false:
-
-```js 
-var story = new Campfire()
-
-story.setSwitch('has_physics_book')
-
-if(playerDroppedBook()) {
-    story.setSwitch('has_physics_book', false)
-}
+```html
+<a id="player-sadism-button" class="btn btn-lg" onclick="handleStopPainButton()">Stop the Electrocution</a>
 ```
 
-The functions `setSwitch` and `getSwitch` can also be used in two other ways: `remember` and `recall`, respectively:
+In the above example, if the player does not press the button (`#player-sadism-button`) in five seconds, the function `story.remember()` will be called and add `ch1_player_likes_seeing_pain` to Campfire's list of remembered switches. 
+
+Later, I can write some dialogue like this:
+
+```html
+<p>You always were different from others, weren't you? <span id="player-is-sadist"></span> Regardless, we have work to do.</p>
+
+<!-- ... -->
+
+<script>
+if( story.recall('ch1_player_likes_seeing_pain') ) {
+    document.getElementById('player-is-sadist').innerHTML = "Your curiosity about the suffering of others is a little stronger than you ever anticipated, isn't it?"
+}
+</script>
+```
+
+### Integrated Example
+
+You can use triggers to set switches, too:
 
 ```js
-var story = Campfire()
+var story = new Campfire()
 
-story.remember('chose_left_door')
-
-if(story.recall('chose_right_door')) {
-    // This will not happen
-}
-
-if(story.recall('chose_left_door')) {
-    // This will happen
-}
+story.registerTrigger({
+    trigger: () => { story.recall('player hates cheese') },
+    events: [
+        {
+            targetId: 'player-cheese-preferences',
+            setContent: 'Hates it!'
+        }
+    ]
+})
 ```
+
+Here's another example. In a choose-your-own-adventure game I am working on, the player's interactions with NPCs is dependent on the player's karma--which, subsequently, is influenced by their choices. 
+
+Here, the first time that `story.recall('player helped the paladin')` returns true, the function `AddKarmaToPlayer()` will fire--and it will fire exactly one time for the duration of the game. This allows you to use the trigger and switch systems together as a sort of pseudo-achievements system. 
+
+```js
+var story = new Campfire()
+
+story.registerTrigger({
+    trigger: () => { story.recall('player helped the paladin') },
+    then: () => { AddKarmaToPlayer() }
+})
+```
+
+
 
 # Contributing
 

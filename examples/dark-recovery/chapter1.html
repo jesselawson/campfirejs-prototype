@@ -47,8 +47,10 @@
         </p>
 
       <p class="authorInfo">
-        DARK RECOVERY<br>
-        By <strong><a href="https://lawsonry.com">JESSE LAWSON</a></strong>.
+        <center>
+          DARK RECOVERY<br>
+        by <strong><a href="https://lawsonry.com">JESSE LAWSON</a></strong>
+        </center>
       </p>
 
 
@@ -82,7 +84,7 @@
 
       <p class="btnBlock">
         <a class="btn" onclick="handleClick()">
-          <span id="scramble-button-text">Continue Treatment</span>
+          <span>Continue Treatment</span>
         </a>
       </p>
 
@@ -97,9 +99,14 @@
       </div>
 
       <div id="page-3-button" class="cf-hidden">
-      <p class="btnBlock">
-          <a class="btn" onclick="handleClick()">
-            <span id="scramble-button-text">Continue Treatment</span>
+        <div class="scramble-text-alt-container">
+      <p class="scramble-text">And together, we can stop them.<br>Will you help me?</p>
+      </div>
+        <p class="btnBlock">
+            <a class="btn" onclick="story.handleChoice('ch1_abandon');">
+                <span>Abandon Treatment</span>
+              </a>&nbsp;<a class="btn" onclick="story.handleChoice('ch1_treatment');">
+            <span>Continue Treatment</span>
           </a>
         </p>
       </div>
@@ -123,18 +130,17 @@ var clicks = -1;
 function handleClick() {
     clicks++;
     
-    story.OnUpdate()
+    story.onUpdate()
 }
 
-
-story.OnLoad( function() {
+story.onLoad( function() {
   var loggedIterations = ["6th", "7th", "35th", "9th","4th","3rd"]
   var iterations = loggedIterations[Math.floor(Math.random()*loggedIterations.length)]
   document.getElementById('iterations').innerHTML = iterations;
 })
 
 // Register a bunch of triggers
-story.RegisterTrigger({ 
+story.registerTrigger({ 
   trigger: () => { return clicks == 0 }, 
   events: [
     {
@@ -154,14 +160,14 @@ story.RegisterTrigger({
   }
 })
 
-story.RegisterTrigger({ 
+story.registerTrigger({ 
   trigger: () => { return clicks == 1 }, 
   then: function() {
     ServerMessage("Oops! Something went wrong. Please try again.")
   }
 })
 
-story.RegisterTrigger({ 
+story.registerTrigger({ 
   trigger: () => { return clicks == 2 }, 
   events: [
     {
@@ -173,7 +179,7 @@ story.RegisterTrigger({
   }
 })
 
-story.RegisterTrigger({ 
+story.registerTrigger({ 
   trigger: () => { return clicks == 3 }, 
   events: [
     {
@@ -190,7 +196,7 @@ story.RegisterTrigger({
   }
 })
 
-story.RegisterTrigger({ 
+story.registerTrigger({ 
   trigger: () => { return clicks == 4 }, 
   events: [
     {
@@ -203,7 +209,7 @@ story.RegisterTrigger({
   }
 })
 
-story.RegisterTrigger({ 
+story.registerTrigger({ 
   trigger: () => { return clicks == 5 }, 
   events: [
     {
@@ -217,7 +223,7 @@ story.RegisterTrigger({
   }
 })
 
-story.RegisterTrigger({ 
+story.registerTrigger({ 
   trigger: () => { return clicks == 6 }, 
   events: [
     {
@@ -227,15 +233,15 @@ story.RegisterTrigger({
   ],
   then: function() {
     ServerMessage("Error: un............ (output failed)")
-    HackerMessage("I'll explain later. Click the button one more time.")
+    HackerMessage("I'll explain everything, but I need one more thing:")
+    HackerMessage("Click the button one more time.")
   }
 })
 
-story.RegisterTrigger({ 
+story.registerTrigger({ 
   trigger: () => { return clicks == 7 }, 
   events: [
-    { targetId: 'page-2', addClass: 'page-2-fader' },
-    { targetId: 'page-2', removeClass: 'cf-reveal' },
+    { targetId: 'page-2', addClass: 'page-2-fader'},
     { targetId: 'page-3', addClass: 'cf-reveal'},
     { targetId: 'page-3', addClass: 'fade-in' }
   ],
@@ -243,11 +249,11 @@ story.RegisterTrigger({
     HackerMessage("Good.")
     setTimeout(function() {
       c1p3BeginText()
-    }, 3000)
+    }, 1000)
     setTimeout(function() {
       document.getElementById('scramble-text-container').classList.add('cf-hide')
       document.getElementById('page-3-button').classList.add('cf-reveal')
-    }, 15000)
+    }, 18000)
   }
 })
 
@@ -255,8 +261,8 @@ story.RegisterTrigger({
 
 
 // Always call this at the end
-story.Begin()
+story.begin()
 
-  </script>
+</script>
 
 </html>
