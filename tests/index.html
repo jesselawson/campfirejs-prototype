@@ -1,0 +1,61 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tao Test Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <style>
+    
+    body {
+        background: #EEE0CB;
+        color: #000000;
+        font-family: 'Cabin', sans-serif;
+    }
+
+    #tao {
+        margin: 50px auto;
+        max-width: 600px;
+    }
+
+    .header {
+        color: #413C58;
+        font-weight: bold;
+        width: 100%; 
+    }
+
+    .test-block {
+        border-left: 6px solid #BFD7EA;
+        padding: auto 1em;
+        
+    }
+
+    li {
+        margin-left: 1em;
+    }
+
+    .pass {
+        color: #839788;
+        font-weight: bold;
+    }
+
+    .fail {
+        color: #BAA898;
+        font-weight: bold;
+    }
+    </style>
+</head>
+<body>
+    <div id="tao"></div>
+
+    <!-- The TaoJS tool -->
+    <script src="/tests/tao.js"></script>
+
+    <!-- Library to be tested -->
+    <script src="../src/campfire.js"></script>
+
+    <!-- Test file-->
+    <script src="/tests/campfire.tao.js"></script>
+</body>
+</html>

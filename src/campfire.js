@@ -16,8 +16,13 @@ function Campfire() {
     
     // Triggers
     // Triggers are stored like this:
-    // { trigger: function(), events: [{targetId:'asdf',addClass:'qwer'}], optionalCallback() }
+    // { trigger: function(), events: [{targetId:<string>,addClass:<string>}], optionalCallback() }
     this.triggers = []
+
+    // Switches
+    // Switches are stored like this:
+    // { switch: <string>, state: <true or false> }
+    this.switches = []
 
     // Functions for debugging
     __getTriggers = () => { return this.triggers }
@@ -143,15 +148,28 @@ function Campfire() {
         }
     },
 
-    
-    _handleChoice = (choiceString) => {
+    _remember = (string, _state = true) => {
+        if(typeof(string) === 'string') {
+            this.switches.push({ switch: string, state: _state })
+        } else {
+            Log("Could not register switch '"+string+"' because that is not a valid string.")
+        }
+    },
 
+    _recall = (string) => {
+        for(let s of this.switches) {
+            if(s.switch == string) {
+                return s.state
+            }
+        }
+
+        return null
     }
 
     return {
         
         onLoad: function(callback) {
-            this.onLoadCallback = callback
+            onLoadCallback = callback
             return _onLoad()
         },
         onUpdate: function() {
@@ -161,11 +179,12 @@ function Campfire() {
             return _registerTrigger( params )
         },
         begin: function() {
-            return this.onLoadCallback()
+            return onLoadCallback()
         },
-        handleChoice: function(choiceString) {
-            return _handleChoice(choiceString)
-        },
+        
+        remember: function(string, state = true) { return _remember(string, state) },
+        
+        recall: function(string) { return _recall(string) },
 
         // DEBUG FUNCTIONS
         __getTriggers: function() {
