@@ -16,16 +16,21 @@ function Campfire() {
     
     // Triggers
     // Triggers are stored like this:
-    // { trigger: function(), events: [{targetId:'asdf',addClass:'qwer'}], optionalCallback() }
+    // { trigger: function(), events: [{targetId:<string>,addClass:<string>}], optionalCallback() }
     this.triggers = []
 
-    function getTriggers() { return this.triggers }
+    // Switches
+    // Switches are stored like this:
+    // { switch: <string>, state: <true or false> }
+    this.switches = []
 
-    this.onLoadCallback = function() {}
+    // Functions for debugging
+    _getTriggers = () => { return this.triggers }
 
-    _OnLoad = () => {
-        this.onLoadCallback()
-        // Safely determine whether we're loaded or not, and ensure we only call OnLoad() once
+    onLoadCallback = function() {}
+
+    _onLoad = () => {
+        // Safely determine whether we're loaded or not, and ensure we only call onLoad() once
         if (
           document.readyState === "complete" || 
         (document.readyState !== "loading" && !document.documentElement.doScroll)
@@ -36,7 +41,7 @@ function Campfire() {
         }
     }
     
-    _OnUpdate = () => {
+    _onUpdate = () => {
         
         // Loop through triggers and execute them if their condition has been met
         for( let f of this.triggers ) {
@@ -93,7 +98,7 @@ function Campfire() {
         optionalCallback()
     */
     //{ condition: function(), events: [{targetId:'asdf',addClass:'qwer'}], optionalCallback() }
-    _RegisterTrigger = ( params ) => {
+    _registerTrigger = ( params ) => {
         
         // If this trigger has events, we'll loop through the events and validate them. Otherwise, just register
         // the trigger since it's just a "trigger-then" trigger.
@@ -139,26 +144,51 @@ function Campfire() {
             newParams["fired"] = false // Add a "fired" property to ensure we aren't double firing something
             this.triggers.push(newParams)
             Log("Registered trigger: "+newParams)
-            console.log(newParams)
+            //console.log(newParams)
         }
+    },
+
+    _remember = (string, _state = true) => {
+        if(typeof(string) === 'string') {
+            this.switches.push({ switch: string, state: _state })
+        } else {
+            Log("Could not register switch '"+string+"' because that is not a valid string.")
+        }
+    },
+
+    _recall = (string) => {
+        for(let s of this.switches) {
+            if(s.switch == string) {
+                return s.state
+            }
+        }
+
+        return null
     }
 
     return {
         
-        OnLoad: function(callback) {
-            this.onLoadCallback = callback
+        onLoad: function(callback) {
+            onLoadCallback = callback
+            return _onLoad()
         },
-        OnUpdate: function() {
-            return _OnUpdate()
+        onUpdate: function() {
+            return _onUpdate()
         },
-        RegisterTrigger: function( params ) {
-            return _RegisterTrigger( params )
+        registerTrigger: function( params ) {
+            return _registerTrigger( params )
         },
-        Begin: function() {
-            return this.onLoadCallback()
+        begin: function() {
+            return onLoadCallback()
         },
-        __getTriggers: function() {
-            return this.triggers
+        
+        remember: function(string, state = true) { return _remember(string, state) },
+        
+        recall: function(string) { return _recall(string) },
+
+        // DEBUG FUNCTIONS
+        getTriggers: function() {
+            return _getTriggers()
         }
         
     }

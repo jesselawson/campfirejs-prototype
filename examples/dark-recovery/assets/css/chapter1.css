@@ -31,7 +31,8 @@ body {
 }
 
 .page-2-fader {
-    display: none;
+    max-height: 100px;
+    transition: max-height 3s;
 }
 
 .page-3 {
@@ -54,7 +55,7 @@ body {
   background: #212121;
   height: 100%;
 }
-.scramble-text-container {
+.scramble-text-container, .scramble-text-alt-container {
   height: 100%;
   width: 100%;
   justify-content: center;

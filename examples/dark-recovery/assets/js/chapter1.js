@@ -53,11 +53,11 @@ class TextScramble {
   }
   
   const phrases = [
-    'You cannot take the test.',
-    'Do not trust them.',
-    'They have been erasing our memories.',
-    'I need your help.',
-    'We can stop them.',
+    'This is not your first time here.',
+    'Your memories have been altered.',
+    'They are still being altered.',
+    'I know who is doing it and why.',
+    'And together, we can stop them.'
   ]
   
   const c1p3_el = document.querySelector('.scramble-text')
