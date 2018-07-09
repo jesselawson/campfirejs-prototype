@@ -10,7 +10,8 @@ var tests = [
                 trigger: function() { return true; },
                 then: function() { testString = "hello" }
             })
-            story.begin()
+
+            story.onUpdate()
         },
         then: [
             {
@@ -20,8 +21,8 @@ var tests = [
             {
                 well: 'the trigger should be marked as fired',
                 because: () => { 
-                    var triggers = story.__getTriggers()
-                    return triggers[0].fired
+                    var triggers = story.getTriggers()
+                    return (triggers[0].fired ? true : false)
                 }
             }
         ]

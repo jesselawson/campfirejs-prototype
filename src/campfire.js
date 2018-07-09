@@ -25,9 +25,9 @@ function Campfire() {
     this.switches = []
 
     // Functions for debugging
-    __getTriggers = () => { return this.triggers }
+    _getTriggers = () => { return this.triggers }
 
-    this.onLoadCallback = function() {}
+    onLoadCallback = function() {}
 
     _onLoad = () => {
         // Safely determine whether we're loaded or not, and ensure we only call onLoad() once
@@ -144,7 +144,7 @@ function Campfire() {
             newParams["fired"] = false // Add a "fired" property to ensure we aren't double firing something
             this.triggers.push(newParams)
             Log("Registered trigger: "+newParams)
-            console.log(newParams)
+            //console.log(newParams)
         }
     },
 
@@ -187,8 +187,8 @@ function Campfire() {
         recall: function(string) { return _recall(string) },
 
         // DEBUG FUNCTIONS
-        __getTriggers: function() {
-            return this.triggers
+        getTriggers: function() {
+            return _getTriggers()
         }
         
     }

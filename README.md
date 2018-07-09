@@ -1,30 +1,49 @@
 # Campfire
 
-A lightweight, pure JavaScript tool for writing interactive, mutable experiences.
+A lightweight, pure JavaScript tool for writing interactive experiences. Think of Campfire as a set of "if-this-then-that" tools that let you work with the reader or player and provide feedback based on their actions and choices. 
 
-An alpha demo is being developed in the `examples/` folder. It is **not completed** and is a **work in progress**.
+Good use cases--and future examples--include games, books, courses, and more. 
 
-# Getting Started
+Examples are being developed in the `examples/` folder. They are **not completed** and are **works in progress**.
 
-Include `campfire.js` or `campfire.min.js` in your project.
+# Quick Start
 
-**CDN**
-
-The most recent build of `campfire.min.js` can loaded with the following link:
+Include `campfire.js` or `campfire.min.js` in your project. The most recent build of `campfire.min.js` can loaded with the following link:
 
 ```html
 <script src="https://gitcdn.link/repo/lawsonry/campfirejs/master/dist/campfire.min.js"></script>
 ```
 
-Write a cool interactive experience. 
+This build will always correspond to the most recent release--and not necessarily the most recent version in the repository. 
 
-# Usage
+With Campfire loaded up, go on and write a cool, interactive experience. 
 
-Create a story object:
+# Introduction
 
-```js
+Campfire is a single function that exports a ton of features for scaffolding a rich interactive experience. There are three main pieces to every Campfire experience: 
+
+1. The `Campfire()` object
+2. The `onLoad()` function
+3. The `begin()` function
+
+The most bare bones Campfire looks like this:
+
+```html
+<script>
 var story = new Campfire()
+
+story.onLoad(function() {
+    // Anything you want to happen before the experience starts, such as element binding, calculations, etc.
+})
+
+story.begin()
+
+</script>
 ```
+
+# Functionality
+
+The rest of this readme will describe the delivered functionality of Campfire.
 
 ## Triggers
 
@@ -212,17 +231,35 @@ story.registerTrigger({
 })
 ```
 
-
-
 # Contributing
 
 Feel free to tackle some of the issues and/or submit your own new features as a merge request. 
 
 ## Getting Started
 
-1. Clone the repo and enter the dir: `$> git clone https://www.github.com/lawsonry/campfirejs && cd campfirejs`
-2. Install dev dependencies: `$/campfirejs> npm install`
+1. Clone the repo and enter the dir with `git clone https://www.github.com/lawsonry/campfirejs && cd campfirejs`
+2. Install dev dependencies with `npm install`
 3. Do amazing things.
-4. Build `dist/campfire.min.js`: `$/campfirejs> npm run-script build`
+4. Build the campfire.min.js file with `npm run-script build`
+
+There is also a testing suite that comes with Campfire called Tao, which is a tiny little homegrown testing suite build specifically for tiny little projects like Campfire. 
+
+To use it, just run any dev server **in your project's root folder** and then navigate to `/tests`.
+
+**Running a dev server in Python**
+```bash
+python -m SimpleHTTPServer
+```
+
+**Running a dev server via Node and live-server**
+```bash
+npm install -g live-server
+live-server
+```
+
+**Running a dev server in PHP**
+```bash
+php -S localhost:8080
+```
 
 Feel free to submit a merge request with your changes and improvements. 
