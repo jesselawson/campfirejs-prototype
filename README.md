@@ -242,7 +242,9 @@ Feel free to tackle some of the issues and/or submit your own new features as a 
 3. Do amazing things.
 4. Build the campfire.min.js file with `npm run-script build`
 
-There is also a testing suite that comes with Campfire called Tao, which is a tiny little homegrown testing suite build specifically for tiny little projects like Campfire. 
+## Testing
+
+CampfireJS uses the [TaoJS testing tool](https://www.github.com/lawsonry/taojs).
 
 To use it, just run any dev server **in your project's root folder** and then navigate to `/tests`.
 
@@ -261,5 +263,3 @@ live-server
 ```bash
 php -S localhost:8080
 ```
-
-Feel free to submit a merge request with your changes and improvements. 
