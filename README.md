@@ -263,3 +263,13 @@ live-server
 ```bash
 php -S localhost:8080
 ```
+
+# Changelog
+
+**1.1**
+
+* Add support for switches with `remember` and `recall`
+
+**1.0**
+
+* Initial release

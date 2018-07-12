@@ -1,6 +1,6 @@
 {
     "name": "CampfireJS",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "A pure JavaScript tool for creating interactive experiences and stories.",
     "repository": "https://www.github.com/lawsonry/campfirejs",
     "author": "Jesse Lawson <jesse@lawsonry.com>",
