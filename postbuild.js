@@ -17,7 +17,7 @@ fs.readFile(file, 'utf8', function(error, result) {
         console.log("Error doing postbuild.")
     } else {
         if (result)
-        var banner = "/* "+details+" ("+currentTag.trim()+")*/"
+        var banner = "/* "+details+" ("+currentTag.trim()+") */"
             banner = banner + '\n' + result;
         
         fs.writeFile(file, banner, function(error){ if(error){console.log("Error writing to built file.")}});
