@@ -4,7 +4,7 @@ A lightweight, pure JavaScript tool for writing interactive experiences. Think o
 
 Good use cases--and future examples--include games, books, courses, and more. 
 
-Examples are being developed in the `examples/` folder. They are **not completed** and are **works in progress**.
+Examples are being developed in the [campfirejs-examples](https://www.github.com/lawsonry/campfirejs-examples) repository. Go check them out!
 
 # Quick Start
 
