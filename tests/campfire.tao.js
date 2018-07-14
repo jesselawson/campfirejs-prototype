@@ -4,7 +4,7 @@ var testString = ""
 
 var tests = [
     {
-        given: 'a simple trigger is created',
+        given: 'a trigger is created',
         by: function() { 
             story.registerTrigger({
                 trigger: function() { return true; },
@@ -25,8 +25,42 @@ var tests = [
                     return (triggers[0].fired ? true : false)
                 }
             }
+            
         ]
     },
+    { 
+        given: 'a trigger with a label is created',
+        by: () => {
+            story.registerTrigger({
+                label: 'a test label', 
+                trigger: function() { return true; },
+                then: function() { return true; }
+            })
+        },
+        then: [
+            {
+                well: 'the trigger status should be false before fired',
+                because: () => { return ( story.fired('a test label') == false ? true : false ) }
+            },
+            {
+                well: 'the trigger status should be true after being fired',
+                because: () => { 
+                    story.onUpdate()
+                    return story.fired('a test label')
+                }
+            },
+            {
+                well: 'the fired() function should return null if an invalid label is queried',
+                because: () => {
+                    if(story.fired('label that does not exist') == null){
+                        return true
+                    } else {
+                        return false
+                    }
+                }
+            }
+        ]
+    }
     {
         given: 'a new choice is created',
         by: function() { story.remember('a string') },

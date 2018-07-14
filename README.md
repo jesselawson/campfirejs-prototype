@@ -103,7 +103,7 @@ story.RegisterTrigger({
 
 The above example would call `HandleGameOver()` exactly once when `PlayerIsDead()` returns true. 
 
-## Event Triggers
+### Event Triggers
 
 Campfire delivers a special type of trigger called an "event trigger," which allows you to use any one of the delivered event methods inside your trigger. 
 
@@ -135,6 +135,48 @@ story.RegisterTrigger({
 ```
 
 The `events` property can have as many events as you want that will be fired exactly once when the `trigger` condition is true. For a list of delivered events, see the documentation. 
+
+### Checking on a trigger's status
+
+Triggers are not the same as callback functions, and therefore, you cannot call them "directly" per se. The whole point of triggers is that they wait for other things to change and then are handled in the background. 
+
+Calling a trigger just requires you to think about conditions; what is the trigger's condition, and how can I change it? 
+
+While you can't call a trigger directly per se, you *can* check on a trigger's status with `fired()`. 
+
+`fired()` returns true or false, based on whether that trigger has been fired or not.
+
+Let's say you have the following trigger: 
+
+```js
+var story = new Campfire()
+
+story.registerTrigger({
+    trigger: () => { return isSomethingTrue() },
+    then: () => { doSomething() }
+})
+```
+
+In order to use the `fired()` function, you'll need to assign a `label:` to the trigger's parameter object:
+
+```js
+var story = new Campfire()
+
+story.registerTrigger({
+    label: 'something', 
+    trigger: () => { return isSomethingTrue() },
+    then: () => { doSomething() }
+})
+```
+
+With the `label:` element set, you can now get the status of this trigger:
+
+```js
+console.log( story.fired('something') )
+// Output: "false"
+```
+
+You can even use a trigger's status as a condition for another trigger! Triggers that are fired when other triggers are fired. Imagine the inception!
 
 ## Switches
 
