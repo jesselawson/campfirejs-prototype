@@ -1,15 +1,14 @@
 {
     "name": "CampfireJS",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "A pure JavaScript tool for creating interactive experiences and stories.",
     "repository": "https://www.github.com/lawsonry/campfirejs",
     "author": "Jesse Lawson <jesse@lawsonry.com>",
-    "license": "GPL",
+    "license": "GPL-3.0-or-later",
     "scripts": {
-        "pre-build": "git describe --tags > VERSION",
         "the-build": "./node_modules/.bin/minify src/campfire.js --out-file dist/campfire.min.js",
-        "post-build": "node postbuild.js && rm -rf VERSION",
-        "build": "npm run-script pre-build && npm run-script the-build && npm run-script post-build"
+        "post-build": "node postbuild.js",
+        "build": "npm run-script the-build && npm run-script post-build"
     },
     "devDependencies": {
         "babel-cli": "^6.26.0",
@@ -18,5 +17,8 @@
         "babel-plugin-minify-mangle-names": "^0.4.3",
         "babel-plugin-minify-simplify": "^0.4.3",
         "babel-preset-minify": "^0.4.3"
+    },
+    "dependencies": {
+        "npm": "^6.2.0"
     }
 }
