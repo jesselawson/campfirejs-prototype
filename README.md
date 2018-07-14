@@ -1,10 +1,10 @@
 # Campfire
 
-A lightweight, pure JavaScript tool for writing interactive experiences. Think of Campfire as a set of "if-this-then-that" tools that let you work with the reader or player and provide feedback based on their actions and choices. 
+![campfire-logo](campfire-logo.png) A lightweight, pure JavaScript tool for writing interactive experiences. Think of Campfire as a set of "if-this-then-that" tools that let you work with the reader or player and provide feedback based on their actions and choices. 
 
 Good use cases--and future examples--include games, books, courses, and more. 
 
-Examples are being developed in the [campfirejs-examples](https://www.github.com/lawsonry/campfirejs-examples) repository. Go check them out!
+There's an interactive tutorial in development [here](https://codepen.io/lawsonry/full/wxaYqm/). Check it out!
 
 # Quick Start
 
