@@ -4,7 +4,7 @@
 var details = "CampfireJS by Jesse Lawson"
 const file = "dist/campfire.min.js"
 
-var fs          = require('fs'),
+var fs = require('fs'),
 ERROR_EMPTY = 'could not be empty';
 var currentTag = ""
 
@@ -18,7 +18,7 @@ fs.readFile(file, 'utf8', function(error, result) {
     } else {
         if (result)
         var banner = "/* "+details+" ("+currentTag.trim()+") */"
-            banner = banner + '\n' + result;
+            banner = banner + result;
         
         fs.writeFile(file, banner, function(error){ if(error){console.log("Error writing to built file.")}});
     }

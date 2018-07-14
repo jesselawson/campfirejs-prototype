@@ -164,6 +164,22 @@ function Campfire() {
         }
 
         return null
+    },
+
+    _fired = (label) => {
+
+
+        // Loop through all triggers to find the one with the corresponding label
+        for(let t of this.triggers) {
+            console.log("Checking trigger...")
+            if( t.hasOwnProperty('label') ) {
+                console.log("Checking label "+t.label)
+                if(t.label == label){
+                    return t.fired
+                }
+            } 
+        }
+        return null
     }
 
     return {
@@ -185,6 +201,8 @@ function Campfire() {
         remember: function(string, state = true) { return _remember(string, state) },
         
         recall: function(string) { return _recall(string) },
+
+        fired: function(label) { return _fired(label) },
 
         // DEBUG FUNCTIONS
         getTriggers: function() {

@@ -39,8 +39,12 @@ var tests = [
         },
         then: [
             {
-                well: 'the trigger status should be false before fired',
-                because: () => { return ( story.fired('a test label') == false ? true : false ) }
+                well: 'the trigger status should be false before being fired',
+                because: () => { 
+                    if(!story.fired('a test label')) {
+                        return true
+                    } else { return false }
+                }
             },
             {
                 well: 'the trigger status should be true after being fired',
@@ -60,7 +64,7 @@ var tests = [
                 }
             }
         ]
-    }
+    },
     {
         given: 'a new choice is created',
         by: function() { story.remember('a string') },
@@ -69,6 +73,10 @@ var tests = [
             {
                 well: 'it can be recalled',
                 because: ()=> { return story.recall('a string') }
+            }, 
+            {
+                well: 'un-remembered strings return false',
+                because: () => { return (!story.recall('nothing set') ? true : false) }
             }
         ]
     }
