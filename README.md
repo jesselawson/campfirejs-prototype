@@ -1,6 +1,6 @@
 # Campfire
 
-![campfire-logo](campfire-logo.png) A lightweight, pure JavaScript tool for writing interactive experiences. Think of Campfire as a set of "if-this-then-that" tools that let you work with the reader or player and provide feedback based on their actions and choices. 
+<img align="left" width="100" height="100" src="campfire-logo.png">A lightweight, pure JavaScript tool for writing interactive experiences. Think of Campfire as a set of "if-this-then-that" tools that let you work with the reader or player and provide feedback based on their actions and choices. 
 
 Good use cases--and future examples--include games, books, courses, and more. 
 
